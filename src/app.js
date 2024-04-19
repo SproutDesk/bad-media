@@ -11,15 +11,12 @@ shapes.forEach((shape) => {
     top, bottom, left, right,
   } = shape.getBoundingClientRect();
 
-  const shapeCenterX = (left + right) / 2;
-  const shapeCenterY = (top + bottom) / 2;
-
   shape.origLeft = left;
   shape.origTop = top;
   shape.origRight = right;
   shape.origBottom = bottom;
-  shape.shapeCenterX = shapeCenterX;
-  shape.shapeCenterY = shapeCenterY;
+  shape.shapeCenterX = (left + right) / 2;
+  shape.shapeCenterY = (top + bottom) / 2;
 
   const rotationRegex = shape.classList.toString().match(/(-?)rotate-(\d+)/);
   shape.origRotation = rotationRegex ? `${rotationRegex[1]}${rotationRegex[2]}deg` : '0deg';
@@ -30,24 +27,15 @@ document.addEventListener('mousemove', (event) => {
 
   shapes.forEach((shape) => {
     const {
-      origTop, origBottom, origLeft, origRight, origRotation,
+      origTop, origBottom, origLeft, origRight, origRotation, shapeCenterX, shapeCenterY
     } = shape;
-
-    const shapeCenterX = (origLeft + origRight) / 2;
-    const shapeCenterY = (origTop + origBottom) / 2;
 
     const dx = clientX - shapeCenterX;
     const dy = clientY - shapeCenterY;
 
     const distance = Math.sqrt(dx * dx + dy * dy);
+    const pull = Math.log(4) / (distance * Math.exp(-3));
 
-    const pull = Math.log(4) / (distance * Math.exp(-3)); // Max pull of 60px
-
-    shape.style['transition-property'] = 'transform';
-    shape.style['will-change'] = 'transform';
-    shape.style['transition-timing-function'] = 'ease-out';
-    shape.style['transition-duration'] = '250ms';
-    // shape.style['transform-origin'] = `${shapeCenterX}px ${shapeCenterY}px`;
     shape.style.transform = `translate(${dx * pull}px, ${dy * pull}px) rotate(${origRotation})`;
   });
 });
