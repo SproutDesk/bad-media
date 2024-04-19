@@ -1,0 +1,36 @@
+<nav class="bg-bm_white text-black px-5 flex flex-col justify-evenly h-full overflow-x-clip">
+    <each loop="item in [
+        {
+            title: 'My tools:', link: '#', children: [
+                { title: 'Adobe After Effects', link: '#' },
+                { title: 'Adobe Photoshop', link: '#' },
+                { title: 'Adobe Illustrator', link: '#' },
+                { title: 'Blender 3D', link: '#', subscript: '(but only a little bit)' },
+            ]
+        },
+        {
+            title: 'Socials', link: '#', children: [
+                { title: 'Email', link: '#' },
+                { title: 'LinkedIn', link: '#' },
+                { title: 'Motion Design Instagram', link: '#' },
+                { title: 'Photo and Video Instagram', link: '#' },
+            ]
+        }
+    ]">
+        <div>
+            <h2 class="font-bold text-lg leading-none"><a href="{{item.link}}">{{item.title}}</a></h2>
+            <ul>
+                <each loop="child in item.children">
+                    <li class="link-hover whitespace-nowrap">
+                        <a href="{{child.link}}" class="whitespace-nowrap">
+                            {{child.title}}
+                        </a>
+                        <if condition="child.subscript">
+                            <sub class="whitespace-nowrap">{{child.subscript}}</sub>
+                        </if>
+                    </li>
+                </each>
+            </ul>
+        </div>
+    </each>
+</nav>

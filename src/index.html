@@ -1,0 +1,50 @@
+<extends src="default.html">
+<block name="head">
+    <title>bad media | motion design</title>
+</block>
+<block name="main">
+    <div class="grid h-full gap-2">
+        <div class="relative w-full row-span-full"
+        x-data="{ playing: false }"
+        x-init="$watch('playing', (playing) => {
+            if (playing) {
+                $refs.video.play();
+                $refs.video.controls = true;
+            } else {
+                $refs.video.pause();
+                $refs.video.removeAttribute('controls');
+            }
+        })">
+
+            <video
+                poster="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                class="w-full bg-bm_white aspect-[16/9 auto]"
+                x-ref="video"
+                @play="playing = true"
+                @ended="playing = false"
+                @pause="playing = false">
+                <source src="/video/1080p-vp9veryslow-Opus320.webm" type="video/webm">
+                <source src="/video/1080p-h264slowest-AAC256.mp4" type="video/mp4">
+            </video>
+
+            <div class="absolute inset-0 flex justify-center items-center text-bm_grey"
+                x-show="!playing"
+                @click="playing = true">
+                <div class="h-24 w-24 cursor-pointer">
+                    <include src="../img/BM2024_Icon_Play.svg">
+                </div>
+            </div>
+
+        </div>
+        <div class="bg-bm_white text-black py-3 row-[fit-content] flex items-center">
+            <div class="w-10 mx-5 ">
+                <include src="../img/zondicon-arrow-up-thin.svg"></include>
+            </div>
+            <span class="inline-block">
+                <h3 class="font-bold text-xl">Motion design highlights from 2016-2024</h3>
+                <p>Including work for Nivea, NHS, Prada, BCFC, BFI, and personal projects.</p>
+            </span>
+        </div>
+    </div>
+</block>
+</extends>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 426 144">
+  <defs>
+    <linearGradient id="image-fade-gradient" x1="213" y1="19.06" x2="213" y2="104.9" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#000" stop-opacity="0"/>
+      <stop offset=".1" stop-color="#000" stop-opacity=".17"/>
+      <stop offset="1" stop-color="#000" stop-opacity=".7"/>
+    </linearGradient>
+  </defs>
+  <g>
+    <rect fill="url(#image-fade-gradient)" width="426" height="144"/>
+  </g>
+</svg>

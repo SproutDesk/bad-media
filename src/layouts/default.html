@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/app.css">
+    <block name="head"></block>
+</head>
+
+<body class="debug-screens bg-bm_grey text-bm_white flex items-center min-h-screen py-12 px-4">
+    <include src="background.html"></include>
+    <div class="max-w-xl xl:max-w-6xl lg:max-w-5xl md:max-w-2xl w-full mx-auto space-y-12">
+        <header class="text-center w-64 mx-auto">
+            <include src="./logo.html"></include>
+        </header>
+
+        <div class="grid gap-2 grid-cols-2 grid-flow-row-dense lg:grid-cols-4 lg:grid-rows-2">
+
+            <div class="col-span-1 lg:row-span-1">
+                <include src="./profile-card.html"></include>
+            </div>
+
+            <div class="col-span-1 lg:row-span-1 lg:row-start-2">
+                <include src="./nav.html"></include>
+            </div>
+
+            <main class="col-start-1 col-end-3 lg:col-end-5 lg:col-start-2 lg:row-span-full">
+                <block name="main"></block>
+            </main>
+
+        </div>
+
+        <footer class="space-x-2 w-40 mx-auto">
+            <include src="../img/BM2024_IconSet.svg"></include>
+        </footer>
+    </div>
+    <script src="/app.js"></script>
+</body>
+
+</html>
