@@ -27,14 +27,14 @@ document.addEventListener('mousemove', (event) => {
 
   shapes.forEach((shape) => {
     const {
-      origTop, origBottom, origLeft, origRight, origRotation, shapeCenterX, shapeCenterY
+      origRotation, shapeCenterX, shapeCenterY,
     } = shape;
 
     const dx = clientX - shapeCenterX;
     const dy = clientY - shapeCenterY;
 
     const distance = Math.sqrt(dx * dx + dy * dy);
-    const pull = Math.log(4) / (distance * Math.exp(-3));
+    const pull = Math.log(4) / (distance * Math.exp(-3.2));
 
     shape.style.transform = `translate(${dx * pull}px, ${dy * pull}px) rotate(${origRotation})`;
   });
