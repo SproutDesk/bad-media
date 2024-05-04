@@ -18,8 +18,8 @@
         }
     ]">
         <div>
-            <h2 class="font-bold text-lg leading-none">{{item.title}}</h2>
-            <ul>
+            <h2 class="font-semibold text-lg leading-tight">{{item.title}}</h2>
+            <ul class="text-md subpixel-antialiased">
                 <each loop="child in item.children">
                     <if condition="child.link">
                         <li class="link-hover whitespace-nowrap" data-content="{{child.title}}">
