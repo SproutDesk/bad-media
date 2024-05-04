@@ -22,7 +22,7 @@
             <ul>
                 <each loop="child in item.children">
                     <if condition="child.link">
-                        <li class="link-hover whitespace-nowrap">
+                        <li class="link-hover whitespace-nowrap" data-content="{{child.title}}">
                             <a href="{{child.link}}" class="whitespace-nowrap">
                                 {{child.title}}
                             </a>

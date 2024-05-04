@@ -7,28 +7,25 @@
     width: fit-content;
     height: fit-content;
     z-index: 0;
-    @apply transition-colors duration-300;
 }
-
-.link-hover:hover {
-    @apply text-bm_white;
+.link-hover::after{
+  position: absolute;
+  content: attr(data-content);
+  color: white;
+  background: black;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  height: calc(100% + 2px);
+  bottom: -1px;
+  left: -4px;
+  padding: 1px 4px;
+	transition: all .3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  visibility: hidden;
 }
-
-.link-hover:before {
-    @apply bg-bm_black scale-x-0 transition-transform duration-500;
-    content: '';
-    position: absolute;
-    height: 100%;
-    bottom: 0;
-    width: calc(100% + 4px);
-    left: -2px;
-    transform-origin: right;
-    z-index: -1;
-}
-
-.link-hover:hover:before {
-    @apply scale-x-100;
-    transform-origin: left;
+.link-hover:hover::after{
+	width: calc(100% + 8px);
+  visibility: visible;
 }
 
 .blur-vignette {
