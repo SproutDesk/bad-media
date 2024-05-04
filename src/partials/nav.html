@@ -2,10 +2,10 @@
     <each loop="item in [
         {
             title: 'My tools:', link: '#', children: [
-                { title: 'Adobe After Effects', link: '#' },
-                { title: 'Adobe Photoshop', link: '#' },
-                { title: 'Adobe Illustrator', link: '#' },
-                { title: 'Blender 3D', link: '#', subscript: '(but only a little bit)' },
+                { title: 'Adobe After Effects', link: false },
+                { title: 'Adobe Photoshop', link: false },
+                { title: 'Adobe Illustrator', link: false },
+                { title: 'Blender 3D', link: false, subscript: '(but only a little bit)' },
             ]
         },
         {
@@ -18,17 +18,29 @@
         }
     ]">
         <div>
-            <h2 class="font-bold text-lg leading-none"><a href="{{item.link}}">{{item.title}}</a></h2>
+            <h2 class="font-bold text-lg leading-none">{{item.title}}</h2>
             <ul>
                 <each loop="child in item.children">
-                    <li class="link-hover whitespace-nowrap">
-                        <a href="{{child.link}}" class="whitespace-nowrap">
-                            {{child.title}}
-                        </a>
-                        <if condition="child.subscript">
-                            <sub class="whitespace-nowrap">{{child.subscript}}</sub>
-                        </if>
-                    </li>
+                    <if condition="child.link">
+                        <li class="link-hover whitespace-nowrap">
+                            <a href="{{child.link}}" class="whitespace-nowrap">
+                                {{child.title}}
+                            </a>
+                            <if condition="child.subscript">
+                                <sub class="whitespace-nowrap">{{child.subscript}}</sub>
+                            </if>
+                        </li>
+                    </if>
+                    <else>
+                        <li class="whitespace-nowrap">
+                            <span class="whitespace-nowrap">
+                                {{child.title}}
+                            </span>
+                            <if condition="child.subscript">
+                                <sub class="whitespace-nowrap">{{child.subscript}}</sub>
+                            </if>
+                        </li>
+                    </else>
                 </each>
             </ul>
         </div>
