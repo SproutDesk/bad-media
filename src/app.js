@@ -19,7 +19,13 @@ shapes.forEach((shape) => {
   shape.shapeCenterY = (top + bottom) / 2;
 
   const rotationRegex = shape.classList.toString().match(/(-?)rotate-(\d+)/);
-  shape.origRotation = rotationRegex ? `${rotationRegex[1]}${rotationRegex[2]}deg` : '0deg';
+  if (rotationRegex) {
+    shape.origRotation = rotationRegex ? rotationRegex[2] : '0';
+    shape.origRotationClockwise = rotationRegex[1] !== '-';
+  } else {
+    shape.origRotation = '0';
+    shape.origRotationClockwise = true;
+  }
 });
 
 document.addEventListener('mousemove', (event) => {
@@ -27,7 +33,7 @@ document.addEventListener('mousemove', (event) => {
 
   shapes.forEach((shape) => {
     const {
-      origRotation, shapeCenterX, shapeCenterY,
+      origRotation, origRotationClockwise, shapeCenterX, shapeCenterY,
     } = shape;
 
     const dx = clientX - shapeCenterX;
@@ -36,6 +42,12 @@ document.addEventListener('mousemove', (event) => {
     const distance = Math.sqrt(dx * dx + dy * dy);
     const pull = Math.log(4) / (distance * Math.exp(-3.2));
 
-    shape.style.transform = `translate(${dx * pull}px, ${dy * pull}px) rotate(${origRotation})`;
+    const maxAngle = 30;
+    const rotation = Math.min(
+      parseInt(origRotation, 10) + ((maxAngle / distance) * 100),
+      maxAngle,
+    ) * (origRotationClockwise ? 1 : -1);
+
+    shape.style.transform = `translate(${dx * pull}px, ${dy * pull}px) rotate(${rotation}deg)`;
   });
 });
