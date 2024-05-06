@@ -1,4 +1,4 @@
-<nav class="bg-bm_white text-black px-5 flex flex-col justify-evenly h-full overflow-x-clip">
+<nav class="bg-bm_white text-black px-2 sm:px-5 flex flex-col justify-evenly h-full overflow-x-clip">
     <each loop="item in [
         {
             title: 'My tools:', link: '#', children: [
@@ -18,7 +18,7 @@
         }
     ]">
         <div>
-            <h2 class="font-semibold text-lg leading-tight">{{item.title}}</h2>
+            <h2 class="font-semibold text-base sm:text-lg leading-tight">{{item.title}}</h2>
             <ul>
                 <each loop="child in item.children">
                     <if condition="child.link">
