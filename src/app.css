@@ -47,50 +47,37 @@
   visibility: visible;
 }
 
-.blur-vignette {
-    /* --radius: 34px;
-    --inset: 10px;
-    --transition-length: 50px;
-    --blur: 10px;
-
-
-
-    border-radius: var(--radius);
-    -webkit-backdrop-filter: blur(var(--blur));
-    backdrop-filter: blur(var(--blur));
-    --r: max(var(--transition-length), calc(var(--radius) - var(--inset)));
-    --corner-size: calc(var(--r) + var(--inset)) calc(var(--r) + var(--inset));
-    --corner-gradient: transparent 0px,
-      transparent calc(var(--r) - var(--transition-length)), black var(--r);
-    --fill-gradient: black, black var(--inset),
-      transparent calc(var(--inset) + var(--transition-length)),
-      transparent calc(100% - var(--transition-length) - var(--inset)),
-      black calc(100% - var(--inset));
-    --fill-narrow-size: calc(100% - (var(--inset) + var(--r)) * 2);
-    --fill-farther-position: calc(var(--inset) + var(--r));
-    mask-image: linear-gradient(to right, var(--fill-gradient)),
-      linear-gradient(to bottom, var(--fill-gradient)),
-      radial-gradient(at bottom right, var(--corner-gradient)),
-      radial-gradient(at bottom left, var(--corner-gradient)),
-      radial-gradient(at top left, var(--corner-gradient)),
-      radial-gradient(at top right, var(--corner-gradient));
-    mask-size: 100% var(--fill-narrow-size), var(--fill-narrow-size) 100%,
-      var(--corner-size), var(--corner-size), var(--corner-size),
-      var(--corner-size);
-    mask-position: 0 var(--fill-farther-position), var(--fill-farther-position) 0,
-      0 0, 100% 0, 100% 100%, 0 100%;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat; */
-
+.blur-vignette-disabled {
     position: absolute;
     inset: 0;
-    /* mask: radial-gradient(circle, #0000 50%, rgba(0, 0, 0, 0.9) 80%); */
 
     box-shadow: inset 0 0 100px 20px rgba(0, 0, 0, 0.2);
     mask: radial-gradient(#0000 60%, rgba(0, 0, 0, 0.9) 80%);
     backdrop-filter:blur(10px);
+}
 
-  }
+.blur-vignette-disabled {
+  content: "";
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/7/76/1k_Dissolve_Noise_Texture.png");
+  min-height: 125vh;
+  min-width: 125vw;
+  position: fixed;
+  opacity: 0.1;
+  animation: animateGrain 8s steps(10) infinite;
+}
+@keyframes animateGrain{
+  0%, 100% { transform:translate(0, 0) }
+  10%{ transform:translate(-5%,-10%) }
+  20%{ transform:translate(-15%,-20%) }
+  30%{ transform:translate(-5%,-10%) }
+  40%{ transform:translate(-15%,-20%) }
+  50%{ transform:translate(-5%,-10%) }
+  60%{ transform:translate(-15%,-20%) }
+  70%{ transform:translate(-5%,-10%) }
+  80%{ transform:translate(-15%,-20%) }
+  90%{ transform:translate(-5%,-10%) }
+  100%{ transform:translate(-15%,-20%) }
+}
 
   .skew-shake-x {
     animation: skew-x-shake 1.5s infinite;
