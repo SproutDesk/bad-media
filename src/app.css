@@ -2,8 +2,6 @@
 @tailwind utilities;
 @tailwind components;
 
-
-
 @layer base {
   @font-face {
     font-family: SohneBreit;
@@ -39,12 +37,12 @@
   bottom: -1px;
   left: -4px;
   padding: 1px 4px;
-	transition: all .3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: all .3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
   visibility: hidden;
   pointer-events: none;
 }
 .link-hover:hover::after{
-	width: calc(100% + 8px);
+  width: calc(100% + 8px);
   visibility: visible;
 }
 
